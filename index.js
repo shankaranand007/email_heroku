@@ -11,7 +11,7 @@ app.get("/", (req, res) => {
   res.send("Backend is Running");
 });
 app.post("/", SEND_MESSAGE);
-app.post("/test", (req,res)=>{
+app.get("/test", (req,res)=>{
   res.send("test")
 });
 
