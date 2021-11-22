@@ -1,27 +1,27 @@
 var RateLimiter = require("limiter").RateLimiter;
 var limiter = new RateLimiter(5, "hour");
 const nodemailer = require("nodemailer");
-// let transporter = nodemailer.createTransport({
-//   host: process.env.SMTP_HOST,
-//   port: process.env.SMTP_PORT,
-//   secure: false,
-//   auth: {
-//     user: process.env.SMTP_USER,
-//     pass: process.env.SMTP_PASS,
-//   },
-// });
-
-
 let transporter = nodemailer.createTransport({
-  service: 'Zoho',
-  host: 'mail.zoho.com',
-  port: 587,//587
-  secure: false, // true for 465, false for other ports
+  host: process.env.SMTP_HOST,
+  port: process.env.SMTP_PORT,
+  secure: false,
   auth: {
-    user: 'shankar@sigmared.ai',
-    pass: 'Temp124@'
-  }
+    user: process.env.SMTP_USER,
+    pass: process.env.SMTP_PASS,
+  },
 });
+
+
+// let transporter = nodemailer.createTransport({
+//   service: 'Zoho',
+//   host: 'mail.zoho.com',
+//   port: 587,//587
+//   secure: false, // true for 465, false for other ports
+//   auth: {
+//     user: 'shankar@sigmared.ai',
+//     pass: 'Temp124@'
+//   }
+// });
 module.exports.SEND_MESSAGE = async (req, res) => {
   try {
     var { name, email, message } = req.body;
